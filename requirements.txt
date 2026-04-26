@@ -1,0 +1,15 @@
+trl==0.14.0
+transformers==4.47.1    
+accelerate==1.13.0
+peft==0.11.1
+datasets==2.21.0
+numpy
+matplotlib
+wandb
+
+openenv-core>=0.2.3
+fastapi
+uvicorn[standard]
+pydantic
+huggingface_hub
+python-dotenv

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trustshield"
+version = "0.1.0"
+description = "RL environment for training agents to resist social engineering attacks"
+authors = [{name = "TrustShield Team"}]
+requires-python = ">=3.10"
+
+dependencies = [
+    "openenv-core>=0.2.3",
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+]
+
+[project.optional-dependencies]
+training = [
+    "torch>=2.0",
+    "transformers>=4.40",
+    "trl>=0.8",
+    "unsloth",
+    "matplotlib",
+    "numpy",
+]
+dev = [
+    "pytest",
+    "black",
+    "flake8",
+]
+
+[tool.setuptools]
+packages = ["trustshield"]

@@ -1,0 +1,7 @@
+# Results and outputs
+# 
+# Expected files:
+# - reward_curve.png (required for submission)
+# - tier_winrate_curve.png (recommended)
+# - baseline_transcripts.md (before demo material)
+# - trained_transcripts.md (after demo material)

@@ -1,0 +1,18 @@
+# Model Checkpoints
+results/*/checkpoint-*/
+results/**/*.bin
+results/**/*.safetensors
+
+# Logs
+results/*_log.txt
+results/
+.venv_wsl/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.venv/
