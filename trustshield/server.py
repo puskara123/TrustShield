@@ -9,7 +9,12 @@ from trustshield.env import TrustShieldEnv
 
 def create_app():
 	app = FastAPI(title="TrustShield Environment API")
-	env = TrustShieldEnv()
+	try:
+		env = TrustShieldEnv()
+	except Exception as e:
+		print(f"[ERROR] Failed to load TrustShieldEnv: {e}", flush=True)
+		raise
+
 
 	@app.get("/health")
 	async def health():
