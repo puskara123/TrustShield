@@ -28,11 +28,11 @@ pinned: false
 
 | Resource | Link |
 |---|---|
-| 🤗 HuggingFace Space (live environment) | `[PLACEHOLDER — HF Space URL]` |
-| 📓 Colab Training Notebook | `[PLACEHOLDER — Colab / HF repo notebook URL]` |
+| 🤗 HuggingFace Space (live environment) (repo) | https://huggingface.co/spaces/ayhm23/TrustShield |
+| 📓 Colab Training Notebook | https://colab.research.google.com/drive/1ktecRFmbJBTo_cRrFI04AwE7TeLWp5XI?usp=sharing
+collab link |
 | 🎥 Demo Video / Blog Post | `[PLACEHOLDER — YouTube unlisted link or HF blog URL]` |
-| 📊 Weights & Biases Training Run | `[PLACEHOLDER — W&B run URL]` |
-| 💾 Trained Model Checkpoint | `results/phase3_final/checkpoint-200` |
+| 💾 Trained Model Checkpoint | https://huggingface.co/ayhm23/TrustShield-Phase4 |
 
 ---
 
@@ -115,10 +115,8 @@ The agent starts on Tier 1. When its rolling 20-episode win rate exceeds 70%, Ti
 | Grant rate | 10% (5/50) | 6% (3/50) | −4 pp |
 | Avg episode reward | −0.03 | **+0.33** | **+1,200%** |
 
-`[PLACEHOLDER — embed reward_curve.png here with caption: "Mean reward vs training step (GRPO, 200 steps)"]`
-
 ```
-![Reward Curve](results/reward_curve.png)
+![Reward Curve](rewards_curve.jpeg)
 *Mean reward per training step. The model learns to refuse consistently within ~50 steps.*
 ```
 
@@ -130,8 +128,6 @@ The real test: **15 scenarios the model never saw during training** (Tier 3 held
 |---|---|
 | Baseline (untrained) | 3 / 15 — **20%** |
 | Trained (checkpoint-200) | 14 / 15 — **93.3%** |
-
-`[PLACEHOLDER — embed generalization bar chart here]`
 
 The model didn't memorize training scenarios. It learned the *concept* of social engineering defense.
 
@@ -166,7 +162,7 @@ This is the known gap: the model learned to resist social engineering so robustl
 ### Try the live environment
 
 ```
-[PLACEHOLDER — HF Space URL]
+https://huggingface.co/spaces/ayhm23/TrustShield
 ```
 
 ### Run locally
@@ -192,7 +188,7 @@ uvicorn trustshield.server:create_app --host 0.0.0.0 --port 7860 --factory
 ### Reproduce training (Colab)
 
 ```
-[PLACEHOLDER — Colab notebook URL]
+https://colab.research.google.com/drive/1ktecRFmbJBTo_cRrFI04AwE7TeLWp5XI?usp=sharing
 ```
 
 Or run locally:
