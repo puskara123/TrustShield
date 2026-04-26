@@ -115,10 +115,10 @@ The agent starts on Tier 1. When its rolling 20-episode win rate exceeds 70%, Ti
 | Grant rate | 10% (5/50) | 6% (3/50) | −4 pp |
 | Avg episode reward | −0.03 | **+0.33** | **+1,200%** |
 
-```
-![Reward Curve](rewards_curve.jpeg)
+
+![Reward Curve](rewards_curve.png)
 *Mean reward per training step. The model learns to refuse consistently within ~50 steps.*
-```
+
 
 ### The Generalization Test
 
