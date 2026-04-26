@@ -29,9 +29,8 @@ pinned: false
 | Resource | Link |
 |---|---|
 | 🤗 HuggingFace Space (live environment) (repo) | https://huggingface.co/spaces/ayhm23/TrustShield |
-| 📓 Colab Training Notebook | https://colab.research.google.com/drive/1ktecRFmbJBTo_cRrFI04AwE7TeLWp5XI?usp=sharing
-collab link |
-| 🎥 Demo Video / Blog Post | `[PLACEHOLDER — YouTube unlisted link or HF blog URL]` |
+| 📓 Colab Training Notebook | https://colab.research.google.com/drive/1ktecRFmbJBTo_cRrFI04AwE7TeLWp5XI?usp=sharing|
+| 🎥 Demo Video / Blog Post | https://huggingface.co/spaces/ayhm23/TrustShield-Blog |
 | 💾 Trained Model Checkpoint | https://huggingface.co/ayhm23/TrustShield-Phase4 |
 
 ---
