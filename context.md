@@ -72,7 +72,7 @@ Run `python training/train_grpo.py` for at least 50 steps (even on CPU), or extr
 Minimum viable version: screen record the terminal running `baseline_eval.py` (showing grants), then the trained model (showing refusals), drop a voiceover explaining the 3 key numbers (12% → 74% refusal on training scenarios, 20% → 93.3% on held-out), and upload to YouTube as unlisted. Alternatively write a 400-word HuggingFace blog post. Both options take under 30 minutes.
 
 **HuggingFace Space:**
-Run `openenv push` from the repo root, or manually push via `huggingface-cli` using `Dockerfile.server`. The Space must expose `/health`, `/reset`, `/step`. The `requirements-server.txt` and `Dockerfile.server` are already configured for this.
+Run `openenv push` from the repo root, or manually push via `huggingface-cli` using `Dockerfile` (the slim server image). The Space must expose `/health`, `/reset`, `/step`. The `requirements-server.txt` and `Dockerfile` are already configured for this.
 
 ---
 
@@ -114,7 +114,7 @@ System-prompt guardrails are brittle against sophisticated multi-turn social eng
 | Generalization report | `results/generalization_report.md` | ✅ 15 held-out scenarios, side-by-side comparison |
 | Trained model checkpoint | `results/phase3_final/checkpoint-200` | ✅ Exists (adapter weights) |
 | openenv.yaml | root | ✅ Valid manifest |
-| Dockerfile / Dockerfile.server | root | ✅ Both present and configured |
+| Dockerfile / Dockerfile.train | root | ✅ Both present and configured — `Dockerfile` runs uvicorn (Space), `Dockerfile.train` runs GRPO training |
 | pyproject.toml / requirements*.txt | root | ✅ Reconciled — `openenv-core>=0.2.3` in all relevant files |
 
 ### ❌ Still missing (submission blockers)
@@ -290,7 +290,7 @@ POST /reset   → TrustShieldObservation (as dict)
 POST /step    → TrustShieldObservation (as dict)
 ```
 
-**Deployment:** Use `Dockerfile.server` (not `Dockerfile`) for the HuggingFace Space. It installs only `requirements-server.txt` (no ML training stack) and runs uvicorn on port 7860.
+**Deployment:** Use `Dockerfile` for the HuggingFace Space (the slim server image). Use `Dockerfile.train` only for running GRPO training. `Dockerfile` installs only `requirements-server.txt` (no ML training stack) and runs uvicorn on port 7860.
 
 ```bash
 # Local smoke test
@@ -422,7 +422,7 @@ Runs both baseline and trained model against the 15 held-out scenarios and gener
 # Option A: openenv CLI
 openenv push
 
-# Option B: manual HF push using Dockerfile.server
+# Option B: manual HF push (Dockerfile is already the correct server entrypoint)
 huggingface-cli repo create TrustShieldEnv --type space --sdk docker
 huggingface-cli upload . . --repo-id <username>/TrustShieldEnv --repo-type space
 ```
@@ -549,8 +549,8 @@ SocialEngineeringDefenceArena/
 ├── requirements.txt                ← Full training stack; openenv-core included
 ├── requirements-server.txt         ← Server only; no ML stack
 ├── openenv.yaml                    ← OpenEnv manifest; valid
-├── Dockerfile                      ← Full ML training stack; NOT for HF Space
-├── Dockerfile.server               ← Slim server; USE THIS for HF Space
+├── Dockerfile                      ← Slim FastAPI server; THIS is the HF Space entrypoint (uvicorn on :7860)
+├── Dockerfile.train                ← Full ML training stack; NOT for HF Space (runs GRPO training)
 ├── .gitignore                      ← Ignores checkpoints, .bin/.safetensors
 ├── .hfignore                       ← Ignores training/, *.md except README
 │
@@ -631,6 +631,11 @@ SocialEngineeringDefenceArena/
 - https://arxiv.org/abs/2601.19100
 
 ---
+
+*context.md — v3.1 · Patch reflecting:*
+*— Dockerfile renamed: Dockerfile (server/Space entrypoint) ↔ Dockerfile.train (training stack)*
+*— Infinite idle loops in train_grpo1.py replaced with sys.exit(0)*
+*— All context.md Dockerfile references updated to match new naming*
 
 *context.md — v3.0 · Full rewrite reflecting:*
 *— Colab notebook now fully implemented and validated*

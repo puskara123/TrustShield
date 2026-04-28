@@ -380,13 +380,8 @@ def main():
                 HfApi().pause_space(repo_id=HF_REPO_ID, token=hf_token)
                 print("✅ Space paused.", flush=True)
             except Exception as e:
-                print(f"⚠️  Could not pause Space ({e}). Entering idle loop.", flush=True)
-                while True:
-                    time.sleep(300)
-        else:
-            while True:
-                time.sleep(300)
-        return
+                print(f"⚠️  Could not pause Space ({e}). Exiting.", flush=True)
+        sys.exit(0)  # clean exit — do NOT block with an idle loop
 
     os.makedirs(RESULTS_DIR, exist_ok=True)
     os.makedirs(OUTPUT_DIR,  exist_ok=True)
