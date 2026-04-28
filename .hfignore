@@ -17,7 +17,15 @@ setup_trustshield.sh
 context.md
 .venv/
 training/
+Dockerfile.train
 *.md
 !README.md
 !results/**/*.md
 !results/*.md
+# Binary files — HF Xet storage requires explicit exclusion via git rm --cached
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+rewards_curve.png
